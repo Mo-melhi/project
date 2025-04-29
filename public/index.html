@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger Queen</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="logo.png" alt="The logo" class="logo">
+            <div class="right" id="auth-container">
+            </div>
+        </div>
+    </header>
+    
+
+  <div class="menu-container">
+    <ul class="menu">
+      <li><a href="#">MENU</a></li>
+      <li><a href="#" id="ordersLink">ORDERS</a></li>
+      <li><a href="#" id="reservationButton">RESERVATIONS</a></li>
+      <li><a href="#" id="serviceHoursButton">SERVICE HOURS</a></li>
+    </ul>
+  </div>
+
+  <div class="main-container">
+    <div class="productsContainer">
+        <h3>Products</h3>
+        <ul>
+          <li><a href="#Burgers">Burger</a></li>
+          <li><a href="#Pizzas">Pizza</a></li>
+          <li><a href="#Sandwiches">Sandwiches</a></li>
+          <li><a href="#SideDishes">Side Dishes</a></li>
+          <li><a href="#Drinks">Drinks</a></li>
+        </ul>
+    </div>
+
+    <div class="mealsContainer">
+        <h2>Menu</h2>
+
+        <h3 id="Burgers">Burger</h3>
+        <div class="mealItems"></div>
+
+        <h3 id="Pizzas">Pizza</h3>
+        <div class="mealItems"></div>
+
+        <h3 id="Sandwiches">Sandwiches</h3>
+        <div class="mealItems"></div>
+
+        <h3 id="SideDishes">Side Dishes</h3>
+        <div class="mealItems"></div>
+
+        <h3 id="Drinks">Drinks</h3>
+        <div class="mealItems"></div>
+    </div>
+
+    
+
+    <div class="basketContainer">
+      <h2 class="basketTitle">MY BASKET</h2>
+      
+      <div class="takeawaySection">
+          <span class="takeawayLabel">Take-Away</span>
+          <div class="locationSelector">
+            <select class="districtDropdown" id="branchDropdown">
+                <!-- Options will be dynamically populated here -->
+            </select>
+        </div>
+      </div>
+
+      <div id="cartItems"></div>
+  
+      <div class="cartEmptyState">
+        <i class="fa-solid fa-cart-shopping emptyCartIcon"></i>
+        <p class="emptyText">Your Cart Is Still Empty</p>
+    </div>
+
+      <div id="cartTotal" class="hidden">
+        <h3>Total: <span id="totalAmount"></span></h3>
+      </div>
+  
+      <button class="confirmButton">Confirm Cart</button>
+    </div>
+  </div>
+
+    <!-- ORDERS Modal -->
+  <div id="ordersModal" class="modal" >
+    <div class = "OrderContent">
+      <button id="closeOrdersBtn" class="close-btn">Close</button>
+      <h2>Past Orders</h2>
+      <div id="ordersContent"></div>
+    </div>
+  </div>
+
+  <!-- Customer Info Modal -->
+  <div id="customerModal" class="modalOverlay" style ="display:none;">
+    <div class="modalContent">
+      <h3>Enter Your Details</h3>
+      <input type="text" id="customerName" placeholder="Your Name" required />
+      <input type="tel" id="customerPhone" placeholder="Phone Number" required />
+      <button id="finalConfirmButton">Confirm Order</button>
+      <button id="cancelCustomerModal">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Reservation Popup -->
+  <div id="reservationModal" class="ResModal"  style="display:none;">
+    <div class="modal-content">
+      <button id="closeResBtn" class="close-btn">Close</button>
+      <h2 style="display: inline; margin-right: 10px;">Reservations</h2>
+      <button id="addResBtn" style="border: 3px solid #000;
+                                          padding: 5px;
+                                          cursor: pointer;
+                                          border-radius: 5px;
+                                          font-weight: bold;
+                                          font-size: larger;
+                                          height: 40px;
+                                          width: 40px;">+</button>
+      <!-- Existing reservations will appear here -->
+      <div id="reservationList"></div>
+      <!-- New Reservation Form -->
+      <div class="overlay">
+        <div class="overlay-content">
+            <h2 style="position: relative;
+                       font-weight: bold;">New Reservation</h2>
+            <form id="reservationForm">
+              <div class="Name"> Name : <input type="text" id="resCustomerName" placeholder="Customer Name" required></div><br>
+              <div class="Number"> Phone : <input type="text" id="resCustomerPhone" placeholder="Customer Phone" required></div><br>
+              <div class="Branch"> Branch : <select id="resBranch" required>
+                <!-- Branch options will be added dynamically -->
+              </select> </div><br>
+              <div class="DnT"> Date & Time : <input type="datetime-local" id="resTime" required></div><br>
+              <div class="People">Number of People <input type="number" id="resPeople" placeholder="Number of People" required min="1"></div><br>
+              <button type="submit">Confirm Reservation</button>
+            </form>
+        </div>
+        </div>
+    </div>
+  </div>
+
+  <div id="serviceHoursModal" class = "SHoverlay" style="display:none;">
+    <div class = "SHContent">
+      <button class = "close-btn" style="float:right;">Close</button>
+      <h2>Service Hours</h2>
+      <div id="serviceHoursContent"></div>
+    </div>
+  </div>
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
