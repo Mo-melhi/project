@@ -254,7 +254,7 @@ app.get('/branches/hours', async (req, res) => {
 
   
 
-const PORT = process.env.PORT || 3007;
+const PORT = process.env.DATABASE_URL|| 3007;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
