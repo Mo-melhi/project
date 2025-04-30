@@ -1,3 +1,8 @@
+const API_BASE = window.location.hostname.includes("localhost")
+  ? "http://localhost:3007"
+  : "https://project-s47h.onrender.com";
+
+
 $(document).ready(function() {
     let cart = [];
 
@@ -67,7 +72,7 @@ $(document).ready(function() {
             return;
         }
     
-        const response = await fetch("http://localhost:3007/orders", {
+        const response = await fetch(`${API_BASE}/orders`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ cart, branchId, name, phone })
@@ -90,7 +95,7 @@ $(document).ready(function() {
 
     function fetchMeals() {
         $.ajax({
-            url: "http://localhost:3007/meals", // Your backend API
+            url: `${API_BASE}/meals`, // Your backend API
             method: "GET",
             success: function(mealsByCategory) {
                 for (const category in mealsByCategory) {
@@ -121,7 +126,7 @@ $(document).ready(function() {
     fetchMeals(); // Load meals when the page loads
 
     $.ajax({
-        url: "http://localhost:3007/branches", // The endpoint for fetching branch info
+        url: `${API_BASE}/branches`, // The endpoint for fetching branch info
         method: "GET",
         success: function(branches) {
             const branchDropdown = $('#branchDropdown');
@@ -151,7 +156,7 @@ $(document).ready(function() {
 
     function fetchOrders() {
         $.ajax({
-            url: 'http://localhost:3007/orders',
+            url: `${API_BASE}/orders`,
             method: 'GET',
             success: function (orders) {
                 $('#ordersContent').empty();
@@ -202,7 +207,7 @@ $('#reservationButton').click(async function () {
 
   // Load reservations
   async function loadReservations() {
-    const res = await fetch('http://localhost:3007/reservations');
+    const res = await fetch(`${API_BASE}/reservations`);
     const reservations = await res.json();
     const container = $('#reservationList');
     container.empty();
@@ -230,7 +235,7 @@ $('#reservationButton').click(async function () {
 
   // Load branch options
   async function loadBranches() {
-    const res = await fetch('http://localhost:3007/branches');
+    const res = await fetch(`${API_BASE}/ordersbranches`);
     const branches = await res.json();
     const dropdown = $('#resBranch');
     dropdown.empty();
@@ -251,7 +256,7 @@ $('#reservationButton').click(async function () {
       numberOfPeople: $('#resPeople').val()
     };
 
-    const res = await fetch('http://localhost:3007/reservations', {
+    const res = await fetch(`${API_BASE}/reservations`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
@@ -280,7 +285,7 @@ $('#reservationButton').click(async function () {
 
   // Load service hours from backend
   async function loadServiceHours() {
-    const res = await fetch('http://localhost:3007/branches/hours');
+    const res = await fetch(`${API_BASE}/branches/hours`);
     const data = await res.json();
     const container = $('#serviceHoursContent');
     container.empty();
@@ -314,7 +319,7 @@ $('#reservationButton').click(async function () {
 
     function deleteOrder(orderId) {
         $.ajax({
-            url: `http://localhost:3007/orders/${orderId}`,
+            url: `${API_BASE}/orders/${orderId}`,
             method: 'DELETE',
             success: function () {
                 alert(`Order #${orderId} deleted.`);
