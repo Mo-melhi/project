@@ -3,15 +3,9 @@ import express from "express";
 import env from "dotenv";
 import cors from "cors";
 
-app.use(cors());
-app.use(cors({
-  origin: "https://project-s47h.onrender.com"
-}));
-
-
 const app = express();
 env.config();
-
+app.use(cors());  // This will allow all origins
 const db = new pg.Client({
   connectionString: process.env.DATABASE_URL,
   ssl: {
