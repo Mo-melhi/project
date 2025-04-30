@@ -235,7 +235,7 @@ $('#reservationButton').click(async function () {
 
   // Load branch options
   async function loadBranches() {
-    const res = await fetch(`${API_BASE}/ordersbranches`);
+    const res = await fetch(`${API_BASE}/branches`);
     const branches = await res.json();
     const dropdown = $('#resBranch');
     dropdown.empty();
